@@ -96,7 +96,7 @@ export default {
   components:{foot_guide,head_top},
   methods:{
     testAction(){
-      this.$vux.toast.text('hello', 'top','@toast-content-font-size')
+      this.$vux.toast.text('hello')
 
     }
   }
