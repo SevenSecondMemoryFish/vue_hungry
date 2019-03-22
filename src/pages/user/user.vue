@@ -13,7 +13,7 @@
           <img src="../../assets/right.png"/>
         </section>
         <section class="user_money_coupons">
-          <section class="user_money_coupons_item">
+          <section class="user_money_coupons_item" @click="testAction">
             <section>
               <span style="color: #f90">0.00</span>
               <span class="user_money_coupons_des_item">元</span>
@@ -67,6 +67,7 @@
 <script>
 import foot_guide from '../../components/footGuide'
 import head_top from '../../components/head'
+
 export default {
   name: "user",
   data(){
@@ -92,12 +93,21 @@ export default {
       ],
     }
   },
-  components:{foot_guide,head_top}
+  components:{foot_guide,head_top},
+  methods:{
+    testAction(){
+      this.$vux.toast.text('hello', 'top','@toast-content-font-size')
+
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
   @import "../../style/mixin";
+  @toast-content-font-size{
+    color: white;
+  }
   .user_content {
     margin:  2rem 0;
   }
