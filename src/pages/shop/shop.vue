@@ -349,6 +349,8 @@ export default {
     .menu_left {
       width: 3.8rem;
       background-color: #f8f8f8;
+      -webkit-overflow-scrolling: touch;
+
       overflow-y: auto;
       .menu_left_li {
         padding:  .7rem .3rem;
@@ -369,6 +371,7 @@ export default {
     .menu_right {
       flex: 1;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
       z-index: 11;
       background-color: white;
       .menu_detail_head_left {
