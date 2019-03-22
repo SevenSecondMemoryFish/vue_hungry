@@ -1,10 +1,11 @@
 # vue_hungry
 
+本项目只是自己学些`vue`而写的，里面主要参考[vue2-elm](https://github.com/bailicangdu/vue2-elm),同样非常感谢作者的开源。
 
 
 ## 技术栈
 
-vue2 + vuex + vue-router + webpack + ES6/7 +  sass + flex 
+vue2 + vuex + vue-router + webpack + ES6/7 +  sass + flex +  lodash
 
 
 ## 项目运行
