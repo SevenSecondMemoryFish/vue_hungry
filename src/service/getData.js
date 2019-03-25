@@ -22,7 +22,14 @@ export  const shopListNetwork = (page) => {
 export const  getcaptchas = ()=>{
   return network.post('/v1/captchas',{})
 };
-
+/**
+ * 登录接口
+ * @param parm
+ * @returns {*}
+ */
+export const  login = (parm)=>{
+  return network.post("v2/login",parm);
+}
 export  const  shopDetails = (shopId) =>{
   return network.get('shopping/restaurant/'+shopId,{
     'latitude': '32.88901',
@@ -74,6 +81,27 @@ export  const  searchStore = (keyword) =>{
     tyepe:'search',
     extras:"restaurant_activity"
 
+  })
+};
+
+/**
+ * 用户的详情
+ * @returns {*}
+ */
+export const  getUserInfo = (userId) =>{
+  return network.get("v1/user",{
+    user_id:userId
+  })
+};
+/**
+ * 用户的优惠券列表
+ * @param userId
+ * @returns {*}
+ */
+export const  getCouponList = (userId)=>{
+  return network.get(`promotion/v2/users/${userId}/hongbaos`,{
+    limit:20,
+    offset:0
   })
 };
 

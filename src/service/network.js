@@ -3,7 +3,12 @@ import axios from  'axios'
 import {baseUrl}  from "../config/env";
 
 axios.interceptors.response.use(response=>{
-  return response
+  console.log("response",response);
+  if (response.data.status != 0){
+    return Promise.resolve(response);
+  } else {
+    return Promise.reject(response.data.message);
+  }
 },err=>{
 
 });

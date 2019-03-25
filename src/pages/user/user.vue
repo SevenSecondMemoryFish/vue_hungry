@@ -6,34 +6,35 @@
           <section class="user_info_content_left">
             <img src="../../assets/logo.jpg" class="user_contet_info_img"/>
             <section class="user_login_info">
-              <section class="user_login_info_top">登录/注册</section>
+              <section v-if="userInfo" class="user_login_info_top">{{userInfo.username}}</section>
+              <section v-else class="user_login_info_top">登录/注册</section>
               <section>暂无绑定手机号</section>
             </section>
           </section>
-          <img src="../../assets/right.png"/>
+          <img src="../../assets/right-white.png"/>
         </section>
         <section class="user_money_coupons">
-          <section class="user_money_coupons_item" @click="testAction">
+          <router-link to="/coupon" class="user_money_coupons_item" @click="testAction">
             <section>
-              <span style="color: #f90">0.00</span>
+              <span style="color: #f90">{{userInfo ? userInfo.balance : 0.00}}</span>
               <span class="user_money_coupons_des_item">元</span>
             </section>
             <span>我的余额</span>
-          </section>
-          <section class="user_money_coupons_item">
+          </router-link>
+          <router-link to="/coupon" class="user_money_coupons_item">
             <section>
-              <span style="color: #ff5f3e">0</span>
+              <span style="color: #ff5f3e">{{userInfo ? userInfo.gift_amount:0 }}</span>
               <span class="user_money_coupons_des_item">个</span>
             </section>
             <span>我的优惠</span>
-          </section>
-          <section class="user_money_coupons_item">
+          </router-link>
+          <router-link to="/coupon" class="user_money_coupons_item">
             <section>
-              <span style="color: #6ac20b;">0</span>
+              <span style="color: #6ac20b;">{{userInfo ? userInfo.point : 0}}</span>
               <span class="user_money_coupons_des_item">个</span>
             </section>
             <span>我的积分</span>
-          </section>
+          </router-link>
         </section>
         <section>
           <ul class="user_one_section_ul">
@@ -67,11 +68,12 @@
 <script>
 import foot_guide from '../../components/footGuide'
 import head_top from '../../components/head'
-
+import {getUserInfo} from '../../service/getData'
 export default {
   name: "user",
   data(){
     return{
+      userInfo:null,
       userOneSectionList:[
         {"name":"我的订单",
         "image":require('../../assets/order.png')
@@ -94,26 +96,35 @@ export default {
     }
   },
   components:{foot_guide,head_top},
+  mounted(){
+    this.initData();
+  },
   methods:{
+    initData(){
+      getUserInfo(this.$root.$data.userId).then(res=>{
+        this.userInfo = res;
+        console.log(res);
+      }).catch(err=>{
+
+      })
+    },
     testAction(){
       this.$vux.toast.text('hello')
+    },
 
-    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
   @import "../../style/mixin";
-  @toast-content-font-size{
-    color: white;
-  }
+
   .user_content {
-    margin:  2rem 0;
+    margin-top: 1.95rem;
   }
   .user_info_content {
     display:  flex;
-    padding: .5rem 1rem;
+    padding: .66rem .5rem;
     background-color: #3190e8;
     justify-content: space-between;
     align-items: center;

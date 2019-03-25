@@ -10,7 +10,7 @@ import foodType from '@/pages/foodType/foodType'
 import shopDetail from '@/pages/shopDetail/shopDetail'
 import search from '@/pages/search/search';
 import user from '@/pages/user/user';
-
+import coupon from '@/pages/coupon/coupon'
 Vue.use(Router);
 export default new Router({
   routes: [
@@ -53,6 +53,11 @@ export default new Router({
       path:'/user',
       name:user,
       component:user
+    },
+    {
+      path:'/coupon',
+      name:coupon,
+      component:coupon
     }
   ]
 })

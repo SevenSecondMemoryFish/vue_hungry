@@ -65,7 +65,6 @@
            for (let i = 0,j=0; i< response.length; i+=8,j++){
              footArry[j] = resArr.splice(0,8);
            }
-           console.log(footArry);
            this.foodTypes = footArry;
         }).then(()=>{
           new Swiper('.swiper-container', {

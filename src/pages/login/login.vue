@@ -4,11 +4,11 @@
     <form class="loginForm">
       <section class="login_section account">
         <span>帐&nbsp;&nbsp;&nbsp;号</span>
-        <input placeholder="请输入帐号" type="text" v-model="userAccount"/>
+        <input placeholder="请输入帐号" type="text"  v-model="userAccount"/>
       </section>
       <section class="login_section ">
         <span>密&nbsp;&nbsp;&nbsp;码</span>
-        <input placeholder="请输入密码" v-model="passWord" type="text"/>
+        <input placeholder="请输入密码" v-model="passWord" type="password"/>
       </section>
       <section class="login_section">
         <span>验证码</span>
@@ -32,7 +32,7 @@
 
 <script>
 import headTop from '../../components/head'
-import {getcaptchas} from "../../service/getData";
+import {getcaptchas,login} from "../../service/getData";
 import alertTip from '../../components/alertTip'
 
 export default {
@@ -44,6 +44,7 @@ export default {
       validationCode: '', //短信验证码
       imageCode:null,
       enableLogin:false,
+      userInfo:null
     }
   },
   components:{headTop,alertTip},
@@ -56,14 +57,20 @@ export default {
         this.imageCode = response.code
       })
     },
-    login(){
-      if (!this.enableLogin){
-        return
-      }
-      this.$refs.tip.showTip();
+     login(){
+      if (!this.enableLogin)return
+      var objc = {
+        captcha_code:this.validationCode,
+        "password":this.passWord,
+        username:this.userAccount
+      };
+       login(objc).then(res=>{
+         this.userInfo = res;
+       },(err)=>{
+         this.$vux.toast.text(err)
+      });
     },
     judgeLoginButton(){
-      console.log(this.passWord);
       if (this.userAccount.length>0 && this.passWord.length>0 && this.validationCode.length>0){
         this.enableLogin = true
       } else {
