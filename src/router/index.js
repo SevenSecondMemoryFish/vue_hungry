@@ -11,6 +11,9 @@ import shopDetail from '@/pages/shopDetail/shopDetail'
 import search from '@/pages/search/search';
 import user from '@/pages/user/user';
 import coupon from '@/pages/coupon/coupon'
+import balance from '@/pages/balance/balance'
+import point from '@/pages/point/point'
+import userInfo from '@/pages/userInfo/userInfo'
 Vue.use(Router);
 export default new Router({
   routes: [
@@ -58,6 +61,21 @@ export default new Router({
       path:'/coupon',
       name:coupon,
       component:coupon
+    },
+    {
+      path:'/balance',
+      name:balance,
+      component:balance
+    },
+    {
+      path:'/point',
+      name:point,
+      component:point
+    },
+    {
+      path:'/userInfo',
+      name:userInfo,
+      component:userInfo
     }
   ]
 })

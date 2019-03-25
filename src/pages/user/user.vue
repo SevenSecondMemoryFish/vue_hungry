@@ -2,7 +2,7 @@
     <div>
       <head_top head-title="用户信息"></head_top>
       <section class="user_content">
-        <section class="user_info_content">
+        <section class="user_info_content" @click="userHeadAction">
           <section class="user_info_content_left">
             <img src="../../assets/logo.jpg" class="user_contet_info_img"/>
             <section class="user_login_info">
@@ -14,7 +14,7 @@
           <img src="../../assets/right-white.png"/>
         </section>
         <section class="user_money_coupons">
-          <router-link to="/coupon" class="user_money_coupons_item" @click="testAction">
+          <router-link to="/balance" class="user_money_coupons_item">
             <section>
               <span style="color: #f90">{{userInfo ? userInfo.balance : 0.00}}</span>
               <span class="user_money_coupons_des_item">元</span>
@@ -28,7 +28,7 @@
             </section>
             <span>我的优惠</span>
           </router-link>
-          <router-link to="/coupon" class="user_money_coupons_item">
+          <router-link to="/point" class="user_money_coupons_item">
             <section>
               <span style="color: #6ac20b;">{{userInfo ? userInfo.point : 0}}</span>
               <span class="user_money_coupons_des_item">个</span>
@@ -108,10 +108,13 @@ export default {
 
       })
     },
-    testAction(){
-      this.$vux.toast.text('hello')
+    userHeadAction(){
+      if (this.userInfo){
+        this.$router.push({path:"/userInfo",query:{}})
+      }else {
+        this.$router.push({path:"/login",query:{}})
+      }
     },
-
   }
 }
 </script>
