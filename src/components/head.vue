@@ -11,18 +11,13 @@
         </svg>
       </section>
       <router-link to="/login" v-if="signinUp" class="head_login">
-        <!--<svg class="user_avatar" v-if="userInfo" >-->
-          <!--<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use>-->
-        <!--</svg>-->
         <span class="login_span">登录|注册</span>
       </router-link>
       <section class="title_head ellipsis" v-if="headTitle">
         <span class="title_text">{{headTitle}}</span>
       </section>
-      <slot name="edit"></slot>
+      <slot name="right_action"></slot>
       <slot name="msite-title"></slot>
-      <slot name="changecity"></slot>
-      <slot name="changeLogin"></slot>
     </header>
 </template>
 

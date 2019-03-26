@@ -12,10 +12,10 @@
             <span>用户名</span>
             <img class="userInfo_avatar_right_img" src="../../assets/right.png">
         </section>
-        <section class="userInfo_section">
+        <router-link class="userInfo_section" to="/userInfo/address">
             <span>收货地址</span>
             <img class="userInfo_avatar_right_img" src="../../assets/right.png">
-        </section>
+        </router-link>
         <section class="userInfo_section_header">账号绑定</section>
         <section class="userInfo_section">
             <section class="userInfo_section_left">
@@ -29,6 +29,9 @@
             <span>登录密码</span>
             <img class="userInfo_avatar_right_img" src="../../assets/right.png">
         </section>
+        <transition name="router-slid" mode="out-in">
+            <router-view></router-view>
+        </transition>
     </div>
 </template>
 
@@ -93,4 +96,11 @@
         margin-right: .2rem;
     }
 
+    .router-slid-enter-active, .router-slid-leave-active {
+        transition: all .4s;
+    }
+    .router-slid-enter, .router-slid-leave-active {
+        transform: translate3d(2rem, 0, 0);
+        opacity: 0;
+    }
 </style>

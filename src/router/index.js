@@ -14,6 +14,8 @@ import coupon from '@/pages/coupon/coupon'
 import balance from '@/pages/balance/balance'
 import point from '@/pages/point/point'
 import userInfo from '@/pages/userInfo/userInfo'
+import address from  '@/pages/userInfo/children/address'
+import addAddress from '@/pages/userInfo/children/children/addAddress'
 Vue.use(Router);
 export default new Router({
   routes: [
@@ -75,7 +77,21 @@ export default new Router({
     {
       path:'/userInfo',
       name:userInfo,
-      component:userInfo
+      component:userInfo,
+      children:[
+        {
+          path:'address',
+          name:address,
+          component:address,
+          children: [
+            {
+              path:'addAddress',
+              name:addAddress,
+              component:addAddress,
+            }
+          ]
+        }
+      ]
     }
   ]
 })
