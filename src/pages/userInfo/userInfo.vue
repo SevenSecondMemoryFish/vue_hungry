@@ -1,10 +1,13 @@
 <template>
     <div>
         <head_top go-back="true" head-title="账户信息"></head_top>
+        <cropper v-if="fileData" :cropper_image="fileData" @cropperaction="cropperFinshAction"></cropper>
+
         <section class="userInfo_avatar_section" >
             <span>头像</span>
+            <input id="file" class="selected_image_input" type="file" @input="inputAction">
             <section class="userInfo_avatar_right_section">
-                <img class="userInfo_avatar_img" src="../../assets/logo.jpg">
+                <img class="userInfo_avatar_img" :src="avatarImg">
                 <img class="userInfo_avatar_right_img" src="../../assets/right.png">
             </section>
         </section>
@@ -37,9 +40,43 @@
 
 <script>
     import head_top from '../../components/head'
+    import cropper from '../../components/cropper-component'
     export default {
         name: "userInfo",
-        components:{head_top}
+        components:{ head_top,cropper},
+        data(){
+            return{
+               fileData:null,
+                avatarImg:require("../../assets/logo.jpg")
+            }
+        },
+        methods:{
+            inputAction(e){
+                let file = e.target.files[0];
+                if (!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG)$/.test(e.target.value)) {
+                    alert('图片类型必须是.gif,jpeg,jpg,png,bmp中的一种')
+                    return false
+                }
+                var reader = new FileReader();
+                reader.onload =(e) => {
+                    let data;
+                    if (typeof e.target.result === 'object') {
+                        data = window.URL.createObjectURL(new Blob([e.target.result]))
+                    }
+                    else {
+                        data = e.target.result
+                    }
+                    this.fileData = data;
+                };
+                reader.readAsDataURL(file);
+
+            },
+            cropperFinshAction(data){
+                this.avatarImg = data;
+                this.fileData = null;
+            }
+
+        }
     }
 </script>
 
@@ -47,6 +84,8 @@
     @import "../../style/mixin";
     .userInfo_avatar_section {
         display: flex;
+        position: relative;
+
         padding: .4rem;
         margin-top: 2.5rem;
         align-items: center;
@@ -54,6 +93,7 @@
         background-color: white;
         border-bottom: 1px solid #F5F5F5;
         .userInfo_avatar_right_section {
+
             display: flex;
             align-items: center;
             .userInfo_avatar_img {
@@ -70,6 +110,14 @@
     .userInfo_avatar_right_img {
         @include wh(.6rem,.6rem);
         margin-right: .3rem;
+    }
+    .selected_image_input {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 10rem;
+        height: 100%;
+        opacity:0;
     }
     .userInfo_section {
         display: flex;
