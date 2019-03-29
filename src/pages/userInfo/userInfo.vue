@@ -8,10 +8,10 @@
                 <img class="userInfo_avatar_right_img" src="../../assets/right.png">
             </section>
         </section>
-        <section class="userInfo_section">
+        <router-link class="userInfo_section" to="/userInfo/editName">
             <span>用户名</span>
             <img class="userInfo_avatar_right_img" src="../../assets/right.png">
-        </section>
+        </router-link>
         <router-link class="userInfo_section" to="/userInfo/address">
             <span>收货地址</span>
             <img class="userInfo_avatar_right_img" src="../../assets/right.png">

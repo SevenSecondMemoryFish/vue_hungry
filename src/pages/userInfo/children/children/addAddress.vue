@@ -120,6 +120,9 @@
             height: 1.8rem;
             background-color: #f2f2f2;
         }
+        .warning {
+            border-color: #ea3106;
+        }
     }
     .point_withdrawal {
         background-color: #3190e8;
@@ -137,9 +140,7 @@
         transform: translate3d(2rem, 0, 0);
         opacity: 0;
     }
-    .warning {
-        border-color: #ea3106;
-    }
+
     .store_des_right_content section{
         margin-top: .2rem;
     }

@@ -15,6 +15,7 @@ import balance from '@/pages/balance/balance'
 import point from '@/pages/point/point'
 import userInfo from '@/pages/userInfo/userInfo'
 import address from  '@/pages/userInfo/children/address'
+import editName from  '@/pages/userInfo/children/editName'
 import addAddress from '@/pages/userInfo/children/children/addAddress'
 import searchAddress from '@/pages/userInfo/children/children/searchAddress'
 Vue.use(Router);
@@ -80,6 +81,11 @@ export default new Router({
       name:userInfo,
       component:userInfo,
       children:[
+        {
+          path:'editName',
+          name:editName,
+          component:editName
+        },
         {
           path:'address',
           name:address,
