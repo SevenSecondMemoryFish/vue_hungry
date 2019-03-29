@@ -209,6 +209,7 @@
   .store_des_right_des_content {
     @include sc(.5rem,#999);
   }
+
   ::-webkit-input-placeholder { /* Chrome */
     @include sc(.56rem,#999);
   }

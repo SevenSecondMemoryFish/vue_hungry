@@ -27,7 +27,6 @@ export default {
     name: 'headTop',
     data() {
       return {
-
       }
     },
     mounted(){

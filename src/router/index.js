@@ -16,6 +16,7 @@ import point from '@/pages/point/point'
 import userInfo from '@/pages/userInfo/userInfo'
 import address from  '@/pages/userInfo/children/address'
 import addAddress from '@/pages/userInfo/children/children/addAddress'
+import searchAddress from '@/pages/userInfo/children/children/searchAddress'
 Vue.use(Router);
 export default new Router({
   routes: [
@@ -88,6 +89,13 @@ export default new Router({
               path:'addAddress',
               name:addAddress,
               component:addAddress,
+              children:[
+                {
+                  path:'searchAddress',
+                  name:searchAddress,
+                  component:searchAddress
+                }
+              ]
             }
           ]
         }

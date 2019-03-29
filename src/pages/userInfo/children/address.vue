@@ -2,12 +2,23 @@
     <div class="address_page">
         <head_top head-title="编辑地址" go-back="true" >
             <template slot="right_action">
-                <section class="right_action">编辑</section>
+                <section class="right_action" @click="editAddressAction">{{deleted ? "完成": "编辑"}}</section>
             </template>
         </head_top>
         <section class="address_content_section">
+            <section style="margin-top: .4rem">
+                <ul>
+                    <li v-for="(item,index) in addressList" class="search_item_li" :key="index">
+                        <section>
+                            <section class="search_item_name">{{item.name}}</section>
+                            <section class="search_item_name" style="padding: 0 0 .4rem .2rem">{{item.phone}}</section>
+                        </section>
+                        <img v-if="deleted" src="../../../assets/delete.png" @click="deletedAddressAction(index)">
+                    </li>
+                </ul>
+            </section>
             <router-link to="/userInfo/address/addAddress" class="userInfo_section">
-                <span>新建地址</span>
+                <span style="color: #333">新建地址</span>
                 <img class="userInfo_avatar_right_img" src="../../../assets/right.png">
             </router-link>
         </section>
@@ -19,12 +30,28 @@
 
 <script>
     import head_top from "../../../components/head"
+    import {getAddressList} from '../../../service/getData'
     export default {
         name: "address",
         components:{head_top},
         data(){
             return{
-                addressList:[]
+                addressList:[],
+                deleted:false
+            }
+        },
+        mounted(){
+            getAddressList(this.$root.$data.userId).then(res=>{
+                this.addressList = res;
+            });
+        },
+        methods:{
+            editAddressAction(){
+                console.log(this.deleted);
+                this.deleted = !this.deleted;
+            },
+            deletedAddressAction(index){
+                this.addressList.splice(index,1);
             }
         }
     }
@@ -48,12 +75,13 @@
         font-weight: bold;
     }
     .address_content_section {
-        margin-top: 1.95rem;
+        margin-top: 2.4rem;
     }
     .userInfo_section {
         display: flex;
         padding: .4rem;
         align-items: center;
+        margin-top: .3rem;
         justify-content: space-between;
         background-color: white;
         border-bottom: 1px solid #F5F5F5;
@@ -65,6 +93,29 @@
     .userInfo_avatar_right_img {
         @include wh(.6rem,.6rem);
         margin-right: .3rem;
+    }
+    .search_item_li {
+        border-bottom: 1px solid #ccc;
+        background-color: white;
+        display: flex;
+        padding-right: .6rem ;
+        justify-content: space-between;
+        align-items: center;
+        img{
+            @include wh(.8rem,.8rem);
+        }
+
+    }
+    .search_item_name {
+        @include sc(.6rem,#999);
+        padding: .3rem;
+    }
+    .router-slid-enter-active, .router-slid-leave-active {
+        transition: all .4s;
+    }
+    .router-slid-enter, .router-slid-leave-active {
+        transform: translate3d(2rem, 0, 0);
+        opacity: 0;
     }
 
 </style>

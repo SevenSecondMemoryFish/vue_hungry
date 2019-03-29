@@ -104,4 +104,25 @@ export const  getCouponList = (userId)=>{
     offset:0
   })
 };
+/**
+ * 获取关键字的
+ * @param keyword
+ * @returns {*}
+ */
+export const getNearAddress = (keyword,parm) =>{
+  return network.get("v1/pois",{
+    keyword
+  });
+};
+/**
+ * 保存地址信息
+ * @param userId
+ * @returns {*}
+ */
+export const  saveAddress =(userId,parm)=>{
+  return network.post(`v1/users/${userId}/addresses`,parm)
+};
+export const getAddressList = (userId) =>{
+  return network.get(`v1/users/${userId}/addresses`);
+}
 

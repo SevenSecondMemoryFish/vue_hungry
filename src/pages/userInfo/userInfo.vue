@@ -1,7 +1,7 @@
 <template>
     <div>
         <head_top go-back="true" head-title="账户信息"></head_top>
-        <section class="userInfo_avatar_section">
+        <section class="userInfo_avatar_section" >
             <span>头像</span>
             <section class="userInfo_avatar_right_section">
                 <img class="userInfo_avatar_img" src="../../assets/logo.jpg">

@@ -3,7 +3,8 @@ import {
   MUTATIONS_SHOP_DETAIL,
   MUTATIONS_ADD_SEARCH_HISTORY,
   MUTATIONS_REMOVE_SEARCH_HISTORY,
-  MUTATIONS_REMOVE_ITEM_SEARCH_HISTORY
+  MUTATIONS_REMOVE_ITEM_SEARCH_HISTORY,
+  MUTATIONS_SELECTED_SEARCH_ADDRESS
 } from './mutation-types'
 
 export  default  {
@@ -20,7 +21,8 @@ export  default  {
   },
   [MUTATIONS_REMOVE_SEARCH_HISTORY](state){
     state.search_history_list = [];
+  },
+  [MUTATIONS_SELECTED_SEARCH_ADDRESS](state,item){
+    state.selected_search_address = item;
   }
-
-
 }
