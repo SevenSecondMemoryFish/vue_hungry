@@ -5,8 +5,8 @@
 
 ## 技术栈
 
-vue2 + vuex + vux + vue-router + webpack + ES6/7 +  sass + flex +  lodash
-
+vue2 + vuex + vux + vue-router + webpack + ES6/7 +  sass + flex +  lodash + vue-cropper 
+ 
 
 ## 项目运行
 

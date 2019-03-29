@@ -56,6 +56,7 @@
                 this.$refs.cropper.getCropData((data) => {
                    this.$emit('cropperaction',data);
                 });
+
             }
         },
     }
